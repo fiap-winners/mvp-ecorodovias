@@ -12,7 +12,7 @@ export default function AppMenu() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <NavLink to="/" className="nav-link">
+          <NavLink exact to="/" className="nav-link">
             Dashboard
           </NavLink>
           <NavDropdown title="Base de Atendimento" id="basic-nav-dropdown">
