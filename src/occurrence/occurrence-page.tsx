@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import OccurrenceForm from "./occurrence-form";
 import OccurrenceLoad from "./occurrence-load";
 
-export default function OccurrencesPage() {
+export default function OccurrencePage() {
   return (
     <Container style={{ marginTop: 30 }}>
       <Row>

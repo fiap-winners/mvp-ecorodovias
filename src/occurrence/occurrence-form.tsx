@@ -1,8 +1,8 @@
 import React, { FormEvent, ChangeEvent, useCallback } from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
 
-import FormField from "./form-field";
-import { bases, weatherConditions, weekDays, dayPeriods } from "./data";
+import FormField from "../shared/form-field";
+import { bases, weatherConditions, weekDays, dayPeriods } from "../shared/data";
 
 export default function OccurrenceForm() {
   const onFieldChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {

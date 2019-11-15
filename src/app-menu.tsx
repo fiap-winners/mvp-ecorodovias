@@ -2,8 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
-import { bases } from "./data";
-import { Option } from "./types";
+import { bases } from "./shared/data";
+import { Option } from "./shared/types";
 
 export default function AppMenu() {
   return (
