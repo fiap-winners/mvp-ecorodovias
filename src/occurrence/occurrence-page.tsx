@@ -1,8 +1,9 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 import OccurrenceForm from "./occurrence-form";
 import OccurrenceLoad from "./occurrence-load";
+import DatalakeLoad from "./datalake-load";
 
 export default function OccurrencePage() {
   return (
@@ -12,7 +13,13 @@ export default function OccurrencePage() {
           <OccurrenceForm />
         </Col>
         <Col md={4}>
-          <OccurrenceLoad />
+          <Card>
+            <Card.Header>Carregar Dados</Card.Header>
+            <Card.Body>
+              <OccurrenceLoad />
+              <DatalakeLoad />
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </Container>

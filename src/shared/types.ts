@@ -3,11 +3,9 @@ export interface Option {
   name: string;
 }
 
-interface Occurence {
-  base: string;
-  weather: string;
-  weekDay: string;
-  dayPeriod: string;
+export interface Occurrence {
+  base: Option;
+  weatherCondition: Option;
+  weekDay: Option;
+  dayPeriod: Option;
 }
-
-export default Occurence;
