@@ -7,21 +7,21 @@ export const bases = [
 ];
 
 export const weatherConditions = [
-  { id: 1, name: "Pista Seca" },
-  { id: 2, name: "Chuva Fraca" },
-  { id: 3, name: "Chuva Forte" },
-  { id: 4, name: "Nublado 1" },
-  { id: 5, name: "Nublado 2" }
+  { id: 1, name: "Seco" },
+  { id: 2, name: "Chu 1" },
+  { id: 3, name: "Chu 2" },
+  { id: 4, name: "Nub 1" },
+  { id: 5, name: "Nub 2" }
 ];
 
 export const weekDays = [
-  { id: 1, name: "Segunda" },
-  { id: 2, name: "Terça" },
-  { id: 3, name: "Quarta" },
-  { id: 4, name: "Quinta" },
-  { id: 5, name: "Sexta" },
-  { id: 6, name: "Sábado" },
-  { id: 7, name: "Domingo" }
+  { id: 1, name: "Seg" },
+  { id: 2, name: "Ter" },
+  { id: 3, name: "Qua" },
+  { id: 4, name: "Qui" },
+  { id: 5, name: "Sex" },
+  { id: 6, name: "Sáb" },
+  { id: 7, name: "Dom" }
 ];
 
 export const dayPeriods = [

@@ -1,8 +1,8 @@
 import React from "react";
 import { Row, Col, Card } from "react-bootstrap";
 
-import { bases, weatherConditions, weekDays, dayPeriods } from "../shared/data";
 import TotalOccurrencesPer from "./total-occurrences-per";
+import { bases, weatherConditions, weekDays, dayPeriods } from "../shared/data";
 
 export default function DashboardPage() {
   return (
@@ -10,7 +10,7 @@ export default function DashboardPage() {
       <Row>
         <Col md={6} style={{ marginBottom: 30 }}>
           <Card>
-            <Card.Header>Ocorrências por base de atendimento</Card.Header>
+            <Card.Header>Base de atendimento</Card.Header>
             <Card.Body>
               <TotalOccurrencesPer
                 options={bases}
@@ -21,7 +21,7 @@ export default function DashboardPage() {
         </Col>
         <Col md={6} style={{ marginBottom: 30 }}>
           <Card>
-            <Card.Header>Ocorrências por condição climática</Card.Header>
+            <Card.Header>Condição climática</Card.Header>
             <Card.Body>
               <TotalOccurrencesPer
                 options={weatherConditions}
@@ -34,7 +34,7 @@ export default function DashboardPage() {
       <Row>
         <Col md={6} style={{ marginBottom: 30 }}>
           <Card>
-            <Card.Header>Ocorrências per dia da semana</Card.Header>
+            <Card.Header>Dia da semana</Card.Header>
             <Card.Body>
               <TotalOccurrencesPer
                 options={weekDays}
@@ -45,7 +45,7 @@ export default function DashboardPage() {
         </Col>
         <Col md={6} style={{ marginBottom: 30 }}>
           <Card>
-            <Card.Header>Ocorrências por período do dia</Card.Header>
+            <Card.Header>Período do dia</Card.Header>
             <Card.Body>
               <TotalOccurrencesPer
                 options={dayPeriods}

@@ -17,6 +17,7 @@ interface dataItem {
 }
 
 interface Props {
+  baseId?: string;
   options: Option[];
   genKey: (id: number) => string;
 }
@@ -35,6 +36,32 @@ export default class TotalOccurrencesPer extends Component<Props, State> {
   subscriptions: (() => void)[] = [];
 
   componentDidMount = () => {
+    this.subscribe();
+  };
+
+  componentWillUnmount = () => {
+    this.unsubscribe();
+  };
+
+  componentDidUpdate = (prevProps: Props) => {
+    if (this.props.baseId !== prevProps.baseId) {
+      this.setState(
+        {
+          data: {}
+        },
+        () => {
+          this.unsubscribe();
+          this.subscribe();
+        }
+      );
+    }
+  };
+
+  unsubscribe = () => {
+    this.subscriptions.forEach(unsubscribe => unsubscribe());
+  };
+
+  subscribe = () => {
     this.subscriptions = this.props.options.map((option: Option) => {
       const id = this.props.genKey(option.id);
       return db
@@ -57,13 +84,9 @@ export default class TotalOccurrencesPer extends Component<Props, State> {
     });
   };
 
-  componentWillUnmount() {
-    this.subscriptions.forEach(unsubscribe => unsubscribe());
-  }
-
   render() {
     return (
-      <ResponsiveContainer width="100%" height={180}>
+      <ResponsiveContainer width="100%" height={160}>
         <BarChart data={Object.values(this.state.data)}>
           <CartesianGrid strokeDasharray="3" />
           <XAxis dataKey="name" />
