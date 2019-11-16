@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Card } from "react-bootstrap";
 import {
   XAxis,
   YAxis,
@@ -18,6 +19,7 @@ interface DataItem {
 }
 
 interface Props {
+  title: string;
   baseId?: string;
   options: Option[];
   genKey: (id: number) => string;
@@ -95,14 +97,21 @@ export default class TotalOccurrencesPer extends Component<Props, State> {
 
   render() {
     return (
-      <ResponsiveContainer width="100%" height={160}>
-        <BarChart data={this.getSortedData()}>
-          <CartesianGrid strokeDasharray="3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Bar dataKey="value" fill="#007bff" />
-        </BarChart>
-      </ResponsiveContainer>
+      <Card>
+        <Card.Header>
+          <strong>{this.props.title}</strong>
+        </Card.Header>
+        <Card.Body>
+          <ResponsiveContainer width="100%" height={180}>
+            <BarChart data={this.getSortedData()}>
+              <CartesianGrid strokeDasharray="3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Bar dataKey="value" fill="#007bff" />
+            </BarChart>
+          </ResponsiveContainer>
+        </Card.Body>
+      </Card>
     );
   }
 }
