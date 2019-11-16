@@ -11,7 +11,8 @@ import {
 import { db } from "../shared/firebase";
 import { Option } from "../shared/types";
 
-interface dataItem {
+interface DataItem {
+  order: number;
   name: string;
   value: number;
 }
@@ -24,7 +25,7 @@ interface Props {
 
 interface State {
   data: {
-    [key: string]: dataItem;
+    [key: string]: DataItem;
   };
 }
 
@@ -62,32 +63,40 @@ export default class TotalOccurrencesPer extends Component<Props, State> {
   };
 
   subscribe = () => {
-    this.subscriptions = this.props.options.map((option: Option) => {
-      const id = this.props.genKey(option.id);
-      return db
-        .collection("datalake")
-        .doc(id)
-        .onSnapshot(snapshot => {
-          const d = snapshot.data();
-          if (d) {
+    this.subscriptions = this.props.options.map(
+      (option: Option, index: number) => {
+        const id = this.props.genKey(option.id);
+        return db
+          .collection("datalake")
+          .doc(id)
+          .onSnapshot(snapshot => {
+            const d = snapshot.data();
             this.setState(prevState => ({
               data: {
                 ...prevState.data,
                 [id]: {
+                  order: index,
                   name: option.name,
-                  value: d.c
+                  value: d ? d.c : 0
                 }
               }
             }));
-          }
-        });
-    });
+          });
+      }
+    );
+  };
+
+  getSortedData = () => {
+    const items: DataItem[] = Object.values(this.state.data);
+    return items.sort((a: DataItem, b: DataItem) =>
+      a.order > b.order ? 1 : -1
+    );
   };
 
   render() {
     return (
       <ResponsiveContainer width="100%" height={160}>
-        <BarChart data={Object.values(this.state.data)}>
+        <BarChart data={this.getSortedData()}>
           <CartesianGrid strokeDasharray="3" />
           <XAxis dataKey="name" />
           <YAxis />
