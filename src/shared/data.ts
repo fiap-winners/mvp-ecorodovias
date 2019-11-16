@@ -1,9 +1,9 @@
 export const bases = [
-  { id: 1, name: "IMG KM5" },
-  { id: 2, name: "IMG KM10" },
-  { id: 3, name: "DTR KM54" },
-  { id: 4, name: "DTR KM80" },
-  { id: 5, name: "VAT KM120" }
+  { id: 1, name: "IM KM5" },
+  { id: 2, name: "IM KM10" },
+  { id: 3, name: "DT KM54" },
+  { id: 4, name: "DT KM80" },
+  { id: 5, name: "VA KM120" }
 ];
 
 export const weatherConditions = [

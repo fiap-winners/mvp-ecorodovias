@@ -34,7 +34,7 @@ export default function DashboardPage() {
       <Row>
         <Col md={6} style={{ marginBottom: 30 }}>
           <Card>
-            <Card.Header>Ocorrências dia da semana</Card.Header>
+            <Card.Header>Ocorrências per dia da semana</Card.Header>
             <Card.Body>
               <TotalOccurrencesPer
                 options={weekDays}

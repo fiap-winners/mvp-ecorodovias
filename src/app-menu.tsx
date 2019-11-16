@@ -17,13 +17,15 @@ export default function AppMenu() {
           </NavLink>
           <NavDropdown title="Base de Atendimento" id="basic-nav-dropdown">
             {bases.map((base: Option) => (
-              <NavLink
-                key={base.name}
-                className="dropdown-item"
-                to={`/bases-de-atendimento/${base.id}`}
-              >
-                {base.name}
-              </NavLink>
+              <NavDropdown.Item style={{ padding: 0 }}>
+                <NavLink
+                  className="dropdown-item"
+                  key={base.name}
+                  to={`/bases-de-atendimento/${base.id}`}
+                >
+                  {base.name}
+                </NavLink>
+              </NavDropdown.Item>
             ))}
           </NavDropdown>
           <NavLink to="/ocorrencias" className="nav-link">
