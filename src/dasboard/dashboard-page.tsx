@@ -1,39 +1,32 @@
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
+
+import { bases, weatherConditions, weekDays, dayPeriods } from "../shared/data";
+import TotalOccurrencesPer from "./total-occurrences-per";
 
 export default function DashboardPage() {
   return (
-    <Container style={{ marginTop: 30 }}>
+    <div style={{ padding: 30 }}>
       <Row>
-        <Col xs={6} md={3} style={{ marginBottom: 30 }}>
+        <Col md={6} style={{ marginBottom: 30 }}>
           <Card>
-            <Card.Header>Title goes here</Card.Header>
+            <Card.Header>Ocorrências por base de atendimento</Card.Header>
             <Card.Body>
-              <Card.Text>Text</Card.Text>
+              <TotalOccurrencesPer
+                options={bases}
+                genKey={(id: number) => `${id}_0_0_0`}
+              />
             </Card.Body>
           </Card>
         </Col>
-        <Col xs={6} md={3} style={{ marginBottom: 30 }}>
+        <Col md={6} style={{ marginBottom: 30 }}>
           <Card>
-            <Card.Header>Title goes here</Card.Header>
+            <Card.Header>Ocorrências por condição climática</Card.Header>
             <Card.Body>
-              <Card.Text>Text</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col xs={6} md={3} style={{ marginBottom: 30 }}>
-          <Card>
-            <Card.Header>Title goes here</Card.Header>
-            <Card.Body>
-              <Card.Text>Text</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col xs={6} md={3} style={{ marginBottom: 30 }}>
-          <Card>
-            <Card.Header>Title goes here</Card.Header>
-            <Card.Body>
-              <Card.Text>Text</Card.Text>
+              <TotalOccurrencesPer
+                options={weatherConditions}
+                genKey={(id: number) => `0_${id}_0_0`}
+              />
             </Card.Body>
           </Card>
         </Col>
@@ -41,21 +34,27 @@ export default function DashboardPage() {
       <Row>
         <Col md={6} style={{ marginBottom: 30 }}>
           <Card>
-            <Card.Header>Title goes here</Card.Header>
+            <Card.Header>Ocorrências dia da semana</Card.Header>
             <Card.Body>
-              <Card.Text>Text</Card.Text>
+              <TotalOccurrencesPer
+                options={weekDays}
+                genKey={(id: number) => `0_0_${id}_0`}
+              />
             </Card.Body>
           </Card>
         </Col>
         <Col md={6} style={{ marginBottom: 30 }}>
           <Card>
-            <Card.Header>Title goes here</Card.Header>
+            <Card.Header>Ocorrências por período do dia</Card.Header>
             <Card.Body>
-              <Card.Text>Text</Card.Text>
+              <TotalOccurrencesPer
+                options={dayPeriods}
+                genKey={(id: number) => `0_0_0_${id}`}
+              />
             </Card.Body>
           </Card>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }

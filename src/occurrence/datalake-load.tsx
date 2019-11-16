@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { Button } from "react-bootstrap";
 import { firestore } from "firebase";
 
-import { db, inc } from "../shared/firebase";
+import { db } from "../shared/firebase";
 
 function generateAnalyticsIdsFromOccurrence({
   base,
@@ -37,16 +37,24 @@ export default function DatalakeLoad() {
       .limit(60)
       .get()
       .then((snapshots: firestore.QuerySnapshot) => {
+        const tmpIds: { [key: string]: number } = {};
         snapshots.forEach((snapshot: firestore.QueryDocumentSnapshot) => {
           const occurrence = snapshot.data();
           const ids = generateAnalyticsIdsFromOccurrence(occurrence);
           ids.forEach((id: string) => {
-            db.collection("data")
-              .doc("lake")
-              .update({
-                [id]: inc
-              });
+            if (tmpIds[id]) {
+              tmpIds[id] = tmpIds[id] + 1;
+            } else {
+              tmpIds[id] = 1;
+            }
           });
+        });
+        Object.keys(tmpIds).forEach((id: string) => {
+          db.collection("datalake")
+            .doc(id)
+            .set({
+              c: tmpIds[id]
+            });
         });
       });
   }, []);

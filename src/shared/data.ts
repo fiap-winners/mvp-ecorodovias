@@ -1,17 +1,17 @@
 export const bases = [
-  { id: 1, name: "Imigrates KM5" },
-  { id: 2, name: "Imigrates KM10" },
-  { id: 3, name: "Dutra KM54" },
-  { id: 4, name: "Dutra KM80" },
-  { id: 5, name: "Via Anchieta KM120" }
+  { id: 1, name: "IMG KM5" },
+  { id: 2, name: "IMG KM10" },
+  { id: 3, name: "DTR KM54" },
+  { id: 4, name: "DTR KM80" },
+  { id: 5, name: "VAT KM120" }
 ];
 
 export const weatherConditions = [
   { id: 1, name: "Pista Seca" },
   { id: 2, name: "Chuva Fraca" },
   { id: 3, name: "Chuva Forte" },
-  { id: 4, name: "Nublado Nível 1" },
-  { id: 5, name: "Nublado Nível 2" }
+  { id: 4, name: "Nublado 1" },
+  { id: 5, name: "Nublado 2" }
 ];
 
 export const weekDays = [

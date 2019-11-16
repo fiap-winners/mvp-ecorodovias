@@ -13,5 +13,3 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
-export const inc = firebase.firestore.FieldValue.increment(1);
-export const dec = firebase.firestore.FieldValue.increment(-1);
