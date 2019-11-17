@@ -9,7 +9,7 @@ import {
   ResponsiveContainer
 } from "recharts";
 
-import { db } from "../shared/firebase";
+import { datalakeDoc } from "../shared/firebase";
 import { Option } from "../shared/types";
 
 interface DataItem {
@@ -68,22 +68,19 @@ export default class TotalOccurrencesPer extends Component<Props, State> {
     this.subscriptions = this.props.options.map(
       (option: Option, index: number) => {
         const id = this.props.genKey(option.id);
-        return db
-          .collection("datalake")
-          .doc(id)
-          .onSnapshot(snapshot => {
-            const d = snapshot.data();
-            this.setState(prevState => ({
-              data: {
-                ...prevState.data,
-                [id]: {
-                  order: index,
-                  name: option.name,
-                  value: d ? d.c : 0
-                }
+        return datalakeDoc(id).onSnapshot(snapshot => {
+          const d = snapshot.data();
+          this.setState(prevState => ({
+            data: {
+              ...prevState.data,
+              [id]: {
+                order: index,
+                name: option.name,
+                value: d ? d.c : 0
               }
-            }));
-          });
+            }
+          }));
+        });
       }
     );
   };

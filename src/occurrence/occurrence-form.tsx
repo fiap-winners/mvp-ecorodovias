@@ -1,13 +1,11 @@
 import React, { FormEvent, ChangeEvent, useState, useCallback } from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
 
-import { db } from "../shared/firebase";
+import { byId } from "../shared/utils";
+import { datalakeDoc } from "../shared/firebase";
 import FormField from "../shared/form-field";
-import { bases, weatherConditions, weekDays, dayPeriods } from "../shared/data";
-import { Option } from "../shared/types";
 import { generateAnalyticsIdsFromOccurrence } from "./datalake-load";
-
-const byId = (id: number) => (b: Option) => b.id === id;
+import { bases, weatherConditions, weekDays, dayPeriods } from "../shared/data";
 
 export default function OccurrenceForm() {
   const [baseId, setBaseId] = useState(0);
@@ -47,7 +45,7 @@ export default function OccurrenceForm() {
         const occurrence = { base, weatherCondition, weekDay, dayPeriod };
         const ids = generateAnalyticsIdsFromOccurrence(occurrence);
         ids.forEach((id: string) => {
-          const docRef = db.collection("datalake").doc(id);
+          const docRef = datalakeDoc(id);
           docRef.get().then(doc => {
             const docData = doc.data();
             if (!!docData) {

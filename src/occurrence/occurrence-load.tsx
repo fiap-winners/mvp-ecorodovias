@@ -2,19 +2,20 @@ import React, { useCallback } from "react";
 import { Button } from "react-bootstrap";
 import createOccurrence from "./create-occurrence";
 
+import { byId } from "../shared/utils";
 import { Option } from "../shared/types";
 import { bases, weatherConditions, weekDays, dayPeriods } from "../shared/data";
 
 const genRandom = (options: Option[]) => {
   const id = Math.ceil(Math.random() * options.length);
-  return options.find(opt => opt.id === id);
+  return options.find(byId(id));
 };
 
 function genRandomWithProbability(options: Option[]) {
   var probabilities = [1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5];
   var idx = Math.floor(Math.random() * probabilities.length);
   const id = probabilities[idx];
-  return options.find(opt => opt.id === id);
+  return options.find(byId(id));
 }
 
 function loadRandomOccurrency() {

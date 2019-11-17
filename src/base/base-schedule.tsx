@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Table, Card } from "react-bootstrap";
 
-import { db } from "../shared/firebase";
+import { datalakeDoc } from "../shared/firebase";
 import { weekDays, dayPeriods } from "../shared/data";
 import { Option } from "../shared/types";
 
@@ -65,19 +65,16 @@ export default class BaseSchedule extends Component<Props, State> {
     for (let d = 1; d <= numDays; d++) {
       for (let p = 1; p <= numPeriods; p++) {
         const id = `${this.props.baseId}_0_${d}_${p}`;
-        const unsubscribe = db
-          .collection("datalake")
-          .doc(id)
-          .onSnapshot(snapshot => {
-            const snapshotData = snapshot.data();
-            if (snapshotData) {
-              const updatedData = [...this.state.data];
-              updatedData[p - 1][d - 1] = snapshotData.c;
-              this.setState({
-                data: updatedData
-              });
-            }
-          });
+        const unsubscribe = datalakeDoc(id).onSnapshot(snapshot => {
+          const snapshotData = snapshot.data();
+          if (snapshotData) {
+            const updatedData = [...this.state.data];
+            updatedData[p - 1][d - 1] = snapshotData.c;
+            this.setState({
+              data: updatedData
+            });
+          }
+        });
         this.subscriptions.push(unsubscribe);
       }
     }

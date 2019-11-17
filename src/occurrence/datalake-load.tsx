@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { Button } from "react-bootstrap";
 import { firestore } from "firebase";
 
-import { db } from "../shared/firebase";
+import { db, datalakeDoc } from "../shared/firebase";
 
 export function generateAnalyticsIdsFromOccurrence({
   base,
@@ -50,11 +50,9 @@ export default function DatalakeLoad() {
           });
         });
         Object.keys(tmpIds).forEach((id: string) => {
-          db.collection("datalake")
-            .doc(id)
-            .set({
-              c: tmpIds[id]
-            });
+          datalakeDoc(id).set({
+            c: tmpIds[id]
+          });
         });
       });
   }, []);

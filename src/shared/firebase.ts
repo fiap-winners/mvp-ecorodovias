@@ -13,3 +13,5 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
+
+export const datalakeDoc = (id: string) => db.collection("datalake").doc(id);
