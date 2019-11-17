@@ -4,7 +4,7 @@ import { firestore } from "firebase";
 
 import { db } from "../shared/firebase";
 
-function generateAnalyticsIdsFromOccurrence({
+export function generateAnalyticsIdsFromOccurrence({
   base,
   weatherCondition,
   weekDay,
