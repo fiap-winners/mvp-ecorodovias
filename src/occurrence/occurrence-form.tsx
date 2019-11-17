@@ -1,4 +1,4 @@
-import React, { FormEvent, ChangeEvent, useState, useCallback } from "react";
+import React, { FormEvent, useState, useCallback } from "react";
 import { Row, Col, Card, Button, Form } from "react-bootstrap";
 
 import { byId } from "../shared/utils";
@@ -12,25 +12,6 @@ export default function OccurrenceForm() {
   const [weatherConditionId, setWeatherConditionId] = useState(0);
   const [weekDayId, setWeekDayId] = useState(0);
   const [dayPeriodId, setDayPeriodId] = useState(0);
-
-  const onBaseSelect = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-    setBaseId(Number.parseInt(e.target.value, 10));
-  }, []);
-
-  const onWeatherConditionSelect = useCallback(
-    (e: ChangeEvent<HTMLSelectElement>) => {
-      setWeatherConditionId(Number.parseInt(e.target.value, 10));
-    },
-    []
-  );
-
-  const onWeekDaySelect = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-    setWeekDayId(Number.parseInt(e.target.value, 10));
-  }, []);
-
-  const onDayPeriodSelect = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-    setDayPeriodId(Number.parseInt(e.target.value, 10));
-  }, []);
 
   const onFormSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -80,7 +61,7 @@ export default function OccurrenceForm() {
                 name="base"
                 value={baseId}
                 options={bases}
-                onSelect={onBaseSelect}
+                onSelect={setBaseId}
                 label="Bases de Atendimento"
               />
             </Col>
@@ -89,7 +70,7 @@ export default function OccurrenceForm() {
                 name="weatherCondition"
                 value={weatherConditionId}
                 options={weatherConditions}
-                onSelect={onWeatherConditionSelect}
+                onSelect={setWeatherConditionId}
                 label="Condição Climática"
               />
             </Col>
@@ -98,7 +79,7 @@ export default function OccurrenceForm() {
                 name="weekDay"
                 value={weekDayId}
                 options={weekDays}
-                onSelect={onWeekDaySelect}
+                onSelect={setWeekDayId}
                 label="Dia da Semana"
               />
             </Col>
@@ -107,7 +88,7 @@ export default function OccurrenceForm() {
                 name="dayPeriod"
                 value={dayPeriodId}
                 options={dayPeriods}
-                onSelect={onDayPeriodSelect}
+                onSelect={setDayPeriodId}
                 label="Período do Dia"
               />
             </Col>

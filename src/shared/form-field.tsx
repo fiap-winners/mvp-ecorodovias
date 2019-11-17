@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useCallback } from "react";
 import { Option } from "./types";
 import { FormGroup, FormLabel } from "react-bootstrap";
 
@@ -7,7 +7,7 @@ interface FormFieldProps {
   name: string;
   value: number;
   options: Option[];
-  onSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
+  onSelect: (value: number) => void;
 }
 
 export default function FormField({
@@ -17,6 +17,13 @@ export default function FormField({
   options,
   onSelect
 }: FormFieldProps) {
+  const onChange = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      onSelect(Number.parseInt(e.target.value, 10));
+    },
+    [onSelect]
+  );
+
   return (
     <FormGroup>
       <FormLabel htmlFor={name}>{label}</FormLabel>
@@ -24,7 +31,7 @@ export default function FormField({
         id={name}
         className="form-control"
         value={value}
-        onChange={onSelect}
+        onChange={onChange}
       >
         <option value="">Selecionar</option>
         {options.map((opt: Option) => (
